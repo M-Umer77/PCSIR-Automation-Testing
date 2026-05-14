@@ -10,7 +10,7 @@ export default defineConfig({
 
   use: {
     baseURL: process.env.BASE_URL || "http://10.3.3.86:4008",
-    headless: false,
+    headless: process.env.CI ? true : false,
 
     // Browser ko full screen/maximized jaisa open karega
     viewport: null,
