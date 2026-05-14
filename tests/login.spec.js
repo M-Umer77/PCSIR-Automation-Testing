@@ -45,39 +45,55 @@ test("Valid Login Test", async ({ page }) => {
   await loginPage.verifyDashboardWelcome();
 });
 
-test("Invalid Login Scenarios", async ({ page }) => {
+test("Invalid Login Test", async ({ page }) => {
   const loginPage = new LoginPage(page);
 
-  // Invalid credentials test
   await loginPage.gotoLoginPage();
+
   await loginPage.login(
     loginData.invalidUser.email,
     loginData.invalidUser.password,
   );
-  await loginPage.verifyInvalidCredentialsError();
 
-  // Empty email test
+  await loginPage.verifyInvalidCredentialsError();
+});
+
+test("Empty Email Test", async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
   await loginPage.gotoLoginPage();
+
   await loginPage.login(
     loginData.emptyEmail.email,
     loginData.emptyEmail.password,
   );
-  await loginPage.verifyEmailRequiredError();
 
-  // Empty password test
+  await loginPage.verifyEmailRequiredError();
+});
+
+test("Empty Password Test", async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
   await loginPage.gotoLoginPage();
+
   await loginPage.login(
     loginData.emptyPassword.email,
     loginData.emptyPassword.password,
   );
-  await loginPage.verifyPasswordRequiredError();
 
-  // Both fields empty test
+  await loginPage.verifyPasswordRequiredError();
+});
+
+test("Both Fields Empty Test", async ({ page }) => {
+  const loginPage = new LoginPage(page);
+
   await loginPage.gotoLoginPage();
+
   await loginPage.login(
     loginData.bothEmpty.email,
     loginData.bothEmpty.password,
   );
+
   await loginPage.verifyEmailRequiredError();
   await loginPage.verifyPasswordRequiredError();
 });
